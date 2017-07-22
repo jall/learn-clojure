@@ -38,3 +38,14 @@
 
 (defn sumOfNumbers [numbers]
   (reduce + numbers))
+
+(defn onlyOdds [numbers]
+    (filter odd? numbers))
+
+(defn fibonacci-sequence []
+    (defn recursive [a b]
+        (lazy-seq (cons a (recursive b (+ a b)))))
+    (recursive 1 1))
+
+(defn nFibonacciNumbers [n]
+  (take n (fibonacci-sequence)))
