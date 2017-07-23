@@ -1,7 +1,15 @@
 (ns game-of-life.core
   (:gen-class)
-  (:require [quil.core :as q]
+  (:require [game-of-life.grid :refer [random-grid]]
+            [quil.core :as q]
             [quil.middleware :as m]))
+
+(def square-size-px 10)
+(def grid-size 50)
+(def grid-size-px (* grid-size square-size-px))
+
+(def grid
+    (random-grid grid-size))
 
 (defn setup []
     ; Set frame rate to 30 frames per second.
@@ -34,7 +42,7 @@
     (q/ellipse x y 100 100))))
 
 (q/defsketch quil
-    :title "You spin my circle right round"
+    :title "Game of life"
     :size [500 500]
     ; setup function called only once, during sketch initialization.
     :setup setup
