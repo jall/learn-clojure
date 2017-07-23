@@ -1,6 +1,6 @@
 (ns game-of-life.core
   (:gen-class)
-  (:require [game-of-life.grid :refer [random-grid]]
+  (:require [game-of-life.grid :refer [random-grid, next-iteration]]
             [quil.core :as q]
             [quil.middleware :as m]))
 
@@ -8,8 +8,8 @@
 (def grid-size 50)
 (def grid-size-px (* grid-size square-size-px))
 
-(def dead-colour [90 90 90])
-(def alive-colour [240 240 240])
+(def dead-colour [240 240 240])
+(def alive-colour [90 90 90])
 
 (defn draw-square [x y is-alive]
     (apply q/fill (if is-alive alive-colour dead-colour))
@@ -25,16 +25,16 @@
         (draw-square x y is-alive)))
 
 (defn setup []
-    (q/frame-rate 30)
+    (q/frame-rate 5)
     (random-grid grid-size))
 
 (defn update-state [state]
-    (identity state))
+    (next-iteration state))
 
 (defn draw-state [state]
     ; Clear the sketch first.
-    (apply q/background alive-colour)
-    (apply q/stroke alive-colour)
+    (apply q/background dead-colour)
+    (apply q/stroke dead-colour)
     (draw-grid state))
 
 (q/defsketch drawing
