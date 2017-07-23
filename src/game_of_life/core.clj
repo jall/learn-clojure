@@ -1,10 +1,10 @@
 (ns game-of-life.core
   (:gen-class)
-  (:require [game-of-life.grid
+  (:require [game-of-life.grid :refer [next-iteration]]
+            [game-of-life.init
              :refer [random-grid
                      empty-grid
-                     r-pentomino-grid
-                     next-iteration]]
+                     r-pentomino-grid]]
             [quil.core :as q]
             [quil.middleware :as m]))
 
