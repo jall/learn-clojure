@@ -8,51 +8,41 @@
 (def grid-size 50)
 (def grid-size-px (* grid-size square-size-px))
 
-(def grid
-    (random-grid grid-size))
+(def dead-colour 240)
+(def alive-colour 50)
 
 (defn setup []
-    ; Set frame rate to 30 frames per second.
     (q/frame-rate 30)
-    ; Set color mode to HSB (HSV) instead of default RGB.
-    (q/color-mode :hsb)
-    ; setup function returns initial state. It contains
-    ; circle color and position.
-    {:color 0
-     :angle 0})
+    (random-grid grid-size))
 
 (defn update-state [state]
-    ; Update sketch state by changing circle color and position.
-    {:color (mod (+ (:color state) 0.7) 255)
-     :angle (+ (:angle state) 0.1)})
+    (identity state))
+
+(defn draw-square [x y is-alive]
+    ; (if is-alive (q/fill alive-colour) ((q/fill dead-colour)))
+    (q/rect
+        (* x square-size-px)
+        (* y square-size-px)
+        square-size-px
+        square-size-px))
+
+(defn draw-grid [state]
+    (doseq [[coords is-alive] state
+        :let [x (first coords) y (second coords)]]
+        (draw-square x y is-alive)))
 
 (defn draw-state [state]
-    ; Clear the sketch by filling it with light-grey color.
-    (q/background 240)
-    ; Set circle color.
-    (q/fill (:color state) 255 255)
-    ; Calculate x and y coordinates of the circle.
-    (let [angle (:angle state)
-          x (* 150 (q/cos angle))
-          y (* 150 (q/sin angle))]
-    ; Move origin point to the center of the sketch.
-    (q/with-translation [(/ (q/width) 2)
-                        (/ (q/height) 2)]
-    ; Draw the circle.
-    (q/ellipse x y 100 100))))
+    ; Clear the sketch first.
+    (q/background dead-colour)
+    (draw-grid state))
 
-(q/defsketch quil
+(q/defsketch drawing
     :title "Game of life"
-    :size [500 500]
-    ; setup function called only once, during sketch initialization.
+    :size [grid-size-px grid-size-px]
     :setup setup
-    ; update-state is called on each iteration before draw-state.
     :update update-state
     :draw draw-state
     :features [:keep-on-top]
-    ; This sketch uses functional-mode middleware.
-    ; Check quil wiki for more info about middlewares and particularly
-    ; fun-mode.
     :middleware [m/fun-mode])
 
 (defn -main [& args])
