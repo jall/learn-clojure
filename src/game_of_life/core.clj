@@ -4,9 +4,9 @@
             [quil.core :as q]
             [quil.middleware :as m]))
 
-(def square-size-px 10)
+(def scale 10)
 (def grid-size 50)
-(def grid-size-px (* grid-size square-size-px))
+(def grid-size-px (* grid-size scale))
 
 (def dead-colour [240 240 240])
 (def alive-colour [90 90 90])
@@ -14,13 +14,13 @@
 (defn draw-square [x y is-alive]
     (apply q/fill (if is-alive alive-colour dead-colour))
     (q/rect
-        (* x square-size-px)
-        (* y square-size-px)
-        square-size-px
-        square-size-px))
+        (* x scale)
+        (* y scale)
+        scale
+        scale))
 
-(defn draw-grid [state]
-    (doseq [[coords is-alive] state
+(defn draw-grid [grid]
+    (doseq [[coords is-alive] grid
         :let [x (first coords) y (second coords)]]
         (draw-square x y is-alive)))
 
