@@ -13,6 +13,9 @@
 (defn random-grid [size]
   (zipmap (generate-grid-coords size) (random-booleans)))
 
+(defn empty-grid [size]
+    (zipmap (generate-grid-coords size) (repeat false)))
+
 (defn get-cell [grid coords]
   (or (get grid coords) false))
 

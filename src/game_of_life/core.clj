@@ -1,6 +1,6 @@
 (ns game-of-life.core
   (:gen-class)
-  (:require [game-of-life.grid :refer [random-grid next-iteration]]
+  (:require [game-of-life.grid :refer [random-grid empty-grid next-iteration]]
             [quil.core :as q]
             [quil.middleware :as m]))
 
@@ -27,7 +27,7 @@
 
 (defn setup []
     (q/frame-rate 5)
-    (random-grid grid-size))
+    (empty-grid grid-size))
 
 (defn update-state [state]
     (next-iteration state))
