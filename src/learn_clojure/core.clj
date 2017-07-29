@@ -1,11 +1,6 @@
 (ns learn-clojure.core
   (:gen-class))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (lastInList [1 2 3 4 5]))
-
 ; At the moment I'm working my way through the problem list here:
 ; http://www.4clojure.com/
 
@@ -49,3 +44,23 @@
 
 (defn nFibonacciNumbers [n]
   (take n (fibonacci-sequence)))
+
+(defn adds-100
+  "Write a function that takes a number and adds 100 to it."
+  [number]
+  (+ number 100))
+
+(defn dec-maker
+  "Write a function, dec-maker, that works exactly like the function inc-maker except with subtraction"
+  [decrement]
+  #(- % decrement))
+
+(defn mapset
+  "Write a function, mapset, that works like map except the return value is a set"
+  [f coll]
+  (into #{} (map f coll)))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (lastInSequence [1 2 3 4 5]))
