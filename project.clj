@@ -10,3 +10,4 @@
   :main ^:skip-aot game-of-life.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
+  :repl-options {:init-ns "learn-clojure.core"}
