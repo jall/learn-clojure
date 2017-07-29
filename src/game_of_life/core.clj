@@ -4,6 +4,7 @@
             [game-of-life.init
              :refer [random-grid
                      empty-grid
+                     block-laying-switch-engine-grid
                      r-pentomino-grid]]
             [quil.core :as q]
             [quil.middleware :as m]))
