@@ -14,10 +14,10 @@
   (zipmap (generate-grid-coords size) (random-booleans)))
 
 (defn full-grid [size]
-    (zipmap (generate-grid-coords size) (repeat true)))
+  (zipmap (generate-grid-coords size) (repeat true)))
 
 (defn empty-grid [size]
-    (zipmap (generate-grid-coords size) (repeat false)))
+  (zipmap (generate-grid-coords size) (repeat false)))
 
 (defn midpoint [size]
   [(quot size 2) (quot size 2)])
@@ -33,25 +33,25 @@
          {[x (inc y)] true}
          {[(inc x) (dec y)] true}))
 
- (defn block-laying-switch-engine-grid [size]
-   (def mid (midpoint size))
-   (def x (first mid))
-   (def y (second mid))
-   (merge (empty-grid size)
-          {[(- x 2) (- y 2)] true}
-          {[(- x 1) (- y 2)] true}
-          {[   x    (- y 2)] true}
-          {[(+ x 2) (- y 2)] true}
+(defn block-laying-switch-engine-grid [size]
+  (def mid (midpoint size))
+  (def x (first mid))
+  (def y (second mid))
+  (merge (empty-grid size)
+         {[(- x 2) (- y 2)] true}
+         {[(- x 1) (- y 2)] true}
+         {[x (- y 2)] true}
+         {[(+ x 2) (- y 2)] true}
 
-          {[(- x 2) (- y 1)] true}
+         {[(- x 2) (- y 1)] true}
 
-          {[(+ x 1)    y   ] true}
-          {[(+ x 2)    y   ] true}
+         {[(+ x 1) y] true}
+         {[(+ x 2) y] true}
 
-          {[(- x 1) (+ y 1)] true}
-          {[   x    (+ y 1)] true}
-          {[(+ x 2) (+ y 1)] true}
+         {[(- x 1) (+ y 1)] true}
+         {[x (+ y 1)] true}
+         {[(+ x 2) (+ y 1)] true}
 
-          {[(- x 2) (+ y 2)] true}
-          {[   x    (+ y 2)] true}
-          {[(+ x 2) (+ y 2)] true}))
+         {[(- x 2) (+ y 2)] true}
+         {[x (+ y 2)] true}
+         {[(+ x 2) (+ y 2)] true}))

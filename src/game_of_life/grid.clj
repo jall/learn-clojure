@@ -6,10 +6,10 @@
 
 (defn count-living-neighbours [grid [x y]]
   (reduce +
-      (for [neighbour-x [x (inc x) (dec x)]
-            neighbour-y [y (inc y) (dec y)]
-            :when (not (and (= neighbour-x x) (= neighbour-y y)))]
-          (if (get-cell grid [neighbour-x neighbour-y]) 1 0))))
+          (for [neighbour-x [x (inc x) (dec x)]
+                neighbour-y [y (inc y) (dec y)]
+                :when (not (and (= neighbour-x x) (= neighbour-y y)))]
+            (if (get-cell grid [neighbour-x neighbour-y]) 1 0))))
 
 (defn still-alive? [grid [coords is-alive]]
   (def neighbour-count (count-living-neighbours grid coords))
@@ -23,4 +23,4 @@
 (defn next-iteration [grid]
   (into {}
         (for [cell grid]
-             (update-cell grid cell))))
+          (update-cell grid cell))))

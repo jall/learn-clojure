@@ -20,10 +20,10 @@
 (defn draw-square [x y is-alive]
   (apply q/fill (if is-alive alive-colour dead-colour))
   (q/rect
-   (* x scale)
-   (* y scale)
-   scale
-   scale))
+    (* x scale)
+    (* y scale)
+    scale
+    scale))
 
 (defn draw-grid [grid]
   (doseq [[coords is-alive] grid
@@ -35,10 +35,10 @@
   (r-pentomino-grid grid-size))
 
 (defn update-state [state]
-    (next-iteration state))
+  (next-iteration state))
 
 (defn draw-state [state]
-    ; Clear the sketch first.
+  ; Clear the sketch first.
   (apply q/background dead-colour)
   (apply q/stroke separator-colour)
   (draw-grid state))
