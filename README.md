@@ -21,6 +21,12 @@ Or run a specific file:
 lein run -m learn-clojure.core
 ```
 
+## Todo
+
+* Finish [Clojure for the Brave and True](http://www.braveclojure.com).
+* Practise writing some tests.
+* Explore package ecosystem.
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT).
